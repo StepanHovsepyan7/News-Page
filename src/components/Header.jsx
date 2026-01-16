@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import NavDropdown from './NavDropdown'
 import { items } from './Nav-items'
 
@@ -6,11 +6,33 @@ import { items } from './Nav-items'
 
 function Header() {
 
-const [showInput, setShowInput] = useState(false)
+  const [showInput, setShowInput] = useState(false)
+  const [hidden,setHidden] = useState(false);
+  const [lastScroll,setLastScroll] = useState(0)
+
+  useEffect(()=>{
+
+    const handleScroll = () =>{
+      const currentScroll = window.scrollY
+
+      if(currentScroll > 200 && currentScroll > lastScroll){
+        setHidden(true)
+      }else{
+        setHidden(false)
+      }
+
+      setLastScroll(currentScroll)
+    }
+
+    window.addEventListener('scroll',handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+
+  },[lastScroll])
 
   return (
     <>
-       <div className='container'>
+      <div className={`menu ${hidden ? 'hide' : 'show'}`}>
+         <div className='container'>
          <div className='mt-[25px]  w-full flex justify-around items-center sticky'>
             <img className='cursor-pointer' src="/logotype.png" alt="" />
             <div>
@@ -35,6 +57,7 @@ const [showInput, setShowInput] = useState(false)
               <li className='font-medium cursor-pointer'>Buy Now</li>
         </nav>
         <hr className='mt-[19.5px] bg-[#E9E9E9]'/>
+      </div>
       </div>
     </>
   )
