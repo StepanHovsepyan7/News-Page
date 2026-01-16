@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from 'react'
 import NavDropdown from './NavDropdown'
 import { items } from './Nav-items'
+import MobileHeader from './MobileHeader';
 
 
 
@@ -8,7 +9,9 @@ function Header() {
 
   const [showInput, setShowInput] = useState(false)
   const [hidden,setHidden] = useState(false);
-  const [lastScroll,setLastScroll] = useState(0)
+  const [lastScroll,setLastScroll] = useState(0);
+  const [mobileMenu, setMobileMenu] = useState(false)
+
 
   useEffect(()=>{
 
@@ -31,9 +34,13 @@ function Header() {
 
   return (
     <>
+
+    <MobileHeader open={mobileMenu} close={() =>setMobileMenu(false)}/>
+
       <div className={`menu ${hidden ? 'hide' : 'show'}`}>
          <div className='container'>
          <div className='mt-[25px]  w-full flex justify-around items-center sticky'>
+            <img onClick={()=> setMobileMenu(true)} className='md:hidden cursor-pointer' src="burger.png" alt="" />
             <img className='cursor-pointer' src="/logotype.png" alt="" />
             <div>
               {!showInput ? <img 
@@ -47,7 +54,7 @@ function Header() {
         </div>
        </div>
         <hr className='mt-[25.5px] bg-[#E9E9E9]' />
-      <div className="container">
+      <div className="container headerMenu">
           <nav className='text-center flex justify-center items-center gap-[32px] pt-[22px]'>
               <NavDropdown items={items} title={'Demo'}/>
               <NavDropdown items={items} title={'Post'}/>

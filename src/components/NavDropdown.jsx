@@ -17,7 +17,7 @@ function NavDropdown({title,items}) {
             </div>
 
             {open && (
-                <ul className='dropwdown absolute text-start top-full left-[20px] py-5 w-[176px] bg-white shadow-md'>
+                <ul className='dropwdown absolute z-50 text-start top-full left-[20px] py-5 w-[176px] bg-white shadow-md'>
                     {items.map((e,i)=>{
                         return(
                             <li className='dropdown-list px-4 py-2 text-[13px]' key={i}>
