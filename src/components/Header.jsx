@@ -14,6 +14,14 @@ function Header() {
 
 
   useEffect(()=>{
+    if(mobileMenu){
+      document.body.classList.add('no-scroll')
+    }else{
+      document.body.classList.remove('no-scroll')
+    }
+  },[mobileMenu])
+
+  useEffect(()=>{
 
     const handleScroll = () =>{
       const currentScroll = window.scrollY
@@ -39,9 +47,9 @@ function Header() {
 
       <div className={`menu ${hidden ? 'hide' : 'show'}`}>
          <div className='container'>
-         <div className='mt-[25px]  w-full flex justify-around items-center sticky'>
+         <div className='navigation mt-[25px]  w-full flex justify-around items-center sticky'>
             <img onClick={()=> setMobileMenu(true)} className='md:hidden cursor-pointer' src="burger.png" alt="" />
-            <img className='cursor-pointer' src="/logotype.png" alt="" />
+            <img className='cursor-pointer logoImg' src="/logotype.png" alt="" />
             <div>
               {!showInput ? <img 
               onClick={() => setShowInput(true)} 
