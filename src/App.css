@@ -74,10 +74,6 @@ li {
   animation-name: menu;
   animation-duration: 1s;
 }
-.close{
-  animation-name: menuClose;
-  animation-duration: 1s;
-}
 @keyframes menu {
   from {
     transform: translateX(-100%);
@@ -86,19 +82,22 @@ li {
     transform: translateX(0%);
   }
 }
-
-@keyframes menuClose {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
 body.menu-open {
   overflow: hidden;
 }
-
+.card{
+  font-family: "Roboto", sans-serif;
+}
+.author{
+  font-weight: 500;
+}
+.date{
+  font-weight: 400;
+}
+.container2{
+  max-width: 1160px;
+  margin: 0 auto;
+}
 @media screen and (max-width: 768px) {
   .headerMenu{
     display:none !important;
